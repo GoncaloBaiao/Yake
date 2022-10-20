@@ -10,8 +10,7 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="assets/img/kisspng-letter-y-alphabet-water-drop-letter-y-5a7864adafc1b3.2446063815178395337199.png"
-    rel="icon">
+  <link href="assets/img/favicon.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -27,14 +26,18 @@
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
   <script src="d3.js"></script>
   <script src="d3.layout.cloud.js"></script>
+  <link href="assets/css/tabledemo.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
+  https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap
   <!-- =======================================================
   * Template Name: Arsha - v4.7.1
   * Template URL: https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/
@@ -44,16 +47,22 @@
 </head>
 
 <body>
+
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top header-inner-pages" style="background-color: #37517e;">
     <div class="container d-flex align-items-center">
+      <div class="container" style="display: flex;">
+        <h1 class="logo me-auto"><a href="index.html">Yake!</a></h1>
 
-      <h1 class="logo me-auto"><a href="index.html">Yake!</a></h1>
+      </div>
+
+
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
       <nav id="navbar" class="navbar">
         <ul>
+
           <li class="dropdown"><a href="demo.html"><span>Keyword Extraction</span> <i
                 class="bi bi-chevron-down"></i></a>
             <ul>
@@ -94,7 +103,6 @@
             </ul>
           </li>
           <li><a class="getstarted scrollto" href="/demo.html">Demo</a></li>
-
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -108,7 +116,7 @@
     <section id="breadcrumbs" class="breadcrumbs">
       <div class="container">
 
-        <h2>Extract keywords from sample document</h2>
+        <h2>Free text input</h2>
 
       </div>
     </section><!-- End Breadcrumbs -->
@@ -117,73 +125,40 @@
       <div class="container">
         <fieldset>
           <div class="col-lg-12 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1">
-            <h2>Content</h3>
-              <textarea disabled name="content" id="content" class="form-control"
-                placeholder="Text input limit subject to 250 000 characters" onfocus="this.placeholder=''" cols="30"
-                rows="10">A seleção brasileira treinará com apenas 14 jogadores nesta segunda-feira. O técnico Tite comandará nesta segunda-feira o primeiro treinamento da Seleção Brasileira visando as partidas contra o Uruguai e Paraguai, nos próximos dias 23 e 28, válidos pela Eliminatórias Sul-Americanas para a Copa da Rússia em 2018. Para esta primeira atividade, o comandante terá apenas 14 dos 23 convocados à disposição. Os demais jogadores chegarão entre a tarde desta segunda-feira e a manhã da terça-feira.   A atividade, que será realizado às 16h (de Brasília)  no CT do Corinthians, contará com as presenças de Marcelo, Casemiro, Ederson, Weverton, Diego, Diego Souza, Fagner, Dudu, Filipe Luís, Willian, Miranda, Paulinho, Gil e Renato Augusto - os dois últimos já treinaram no CT do São Paulo durante a semana passada.   Na chegada ao hotel onde está concentrada a Seleção Brasileira, o meia Renato Augusto, atualmente no Beijing Guoan, explicou quais serão as maiores dificuldades encontradas no duelo contra os uruguaios, fora de casa. 'Será um clima semelhante ao da Libertadores, jogaremos fora de casa, enfrentaremos uma catimba natural, mas não devemos entrar no jogo deles, temos que ficar com a cabeça no lugar e fazer o nosso jogo para poder vencer', analisou o titular.   Tite só terá todos os seus convocados no treino desta terça-feira, que será realizado no CT do São Paulo. Dos nove atletas que ainda irão se juntar aos outros convocados, seis ainda deverão chegar nesta segunda-feira, são eles Marquinhos, Thiago Silva, Fernandinho, Giuliano, Coutinho e Firmino. A convocação estará completa apenas nesta terça-feira, com a chegadas de Neymar, Daniel Alves e Alisson.   Líder das Eliminatórias Sul-Americanas com 27 pontos, a Seleção Brasileira encara o segundo colocado, Uruguai, com 23 pontos, na próxima quinta-feira, às 20h (de Brasília), no estádio Centenário, em Montevidéu. Já no dia 2 de março, a equipe volta a campo para enfrentar o Paraguai, no Estádio de Itaquera, às 21h45.</textarea>
+            <h3>Content</h3>
+            <textarea name="content" id="content" class="form-control" cols="30" rows="10"
+              maxlength="250000"></textarea>
           </div>
-          <br>
           <div class="col-lg-6 order-1 order-lg-2">
-            <h4>Inform max ngram size:</h2>
-              <input type="range" id="myRange" min="1" max="10" value="3" class="slider">
-              <span id="range">3</span><span id="tam">-grams</span>
-              <script>
-                let tam = document.getElementById("tam");
-                var output = document.getElementById("range");
-                var slider = document.getElementById("myRange").oninput = function () {
-                  var value = (this.value - this.min) / (this.max - this.min) * 10
-                  output.innerHTML = this.value;
-                  if (this.value > 1) {
-                    tam.innerHTML = "-grams";
-                  } else {
-                    tam.innerHTML = "-gram";
-                  }
+            <h2>Inform max ngram size:</h2>
+            <input type="range" id="myRange" min="1" max="10" value="3" class="slider">
+            <span id="range">3</span>
+            <script>
+              var output = document.getElementById("range");
+              var slider = document.getElementById("myRange").oninput = function () {
+                var value = (this.value - this.min) / (this.max - this.min) * 10
+                output.innerHTML = this.value;
+              }
+            </script>
 
-                }
-              </script>
-
-              <div class="col-lg-6 order-1 order-lg-2" style="display: flex;">
-                <a href="#"><button class="btn btn-danger" style="width:fit-content" type="reset"
-                    onclick="document.getElementById('content').value = ''">Reset</button></a>
-                    <span style="margin-right: 6px;"></span>
-                <a href="#extract"><button class="btn btn-primary" style="width:fit-content; height:38px;" type="submit"
-                    onclick="criaDivs()">Extract
-                    important
-                    keywords</button></a>
+            <div class="col-lg-6 order-1 order-lg-2">
+              <button class="btn btn-link" style="width:fit-content" type="reset">Reset</button>
+              <button class="btn btn-primary" style="width:fit-content" type="submit" onclick="criaDivs()">Extract
+                important
+                keywords</button>
         </fieldset>
       </div>
-
-      <!-- ======= Team Section =======    https://icons.getbootstrap.com/  -->
-  <div id="extract" class="col-lg-12 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1"
-        data-aos="fade-up">
-      </div>
     </section>
+    <!-- ======= Team Section =======    https://icons.getbootstrap.com/  -->
+    <br>
+    <br>
+    <div id="extract" class="col-lg-12 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1"
+      data-aos="fade-up">
+    </div>
+
     <script type="text/javascript">
       function criaDivs() {
 
-        document.querySelector("#extract").innerHTML =
-
-          '<div class="section-title">' +
-          '<h2>Word Cloud</h2>' +
-          '<p>Keywords size is related to its relevance.</p>' +
-          '</div>' +
-          '<div id="body-cloud">' +
-          '</div>' +
-          '<div class="section-title">' +
-          '<h2>Comparing alternative methods</h2>' +
-          '<p>The top 20 keywords ordered by relevance for each method.</p>' +
-          '<p>Mouse-hover on the keywords to highlight similar answers.</p>' +
-          '</div>' +
-          '<div id="tabela" class="col-lg-12 d-flex flex-column pt-4 pt-lg-0 order-2 order-lg-1">' +
-
-          '<ol id="tabelaYake" class="list-group d-flex flex-column pt-4 pt-lg-0 order-2 order-lg-1" style="' +
-          'padding-bottom: 10px;' +
-          'padding-top: 10px;' +
-          'margin-top: 10px;' +
-          'margin-bottom: 10px;' +
-          '">' +
-          '</ol>' +
-          '</div>'
         extract()
       }
 
@@ -195,7 +170,7 @@
         formData.append("content", texto)
         formData.append("max_ngram_size", max_ngram_size)
         formData.append("number_of_keywords", 20)
-        formData.append("preTag", '<b style="color:white; background-color: #37517e;">')
+        formData.append("preTag", "<b>")
         formData.append("posTag", "</b>")
 
         fetch('https://tm-websuiteapps.ipt.pt/yake/api/v2.0/extract_keywords', {
@@ -206,6 +181,8 @@
           .then(data => {
             console.log(data.keywords)
             console.log(data['highlighted_text']);
+
+
 
             function listaTokensIndex(words) {
 
@@ -249,12 +226,8 @@
               //console.log(listaTokens(data.keywords[index].ngram));
               phrase += [data.keywords[index].ngram] + " ";
             }
-
-
-
             console.log(listaTokensIndex(phrase))
             console.log(listaTokensPalavras(phrase))
-
 
             function aplicaToken(words) {
               let myArray = words.split(' ');
@@ -314,21 +287,18 @@
               normalized_score = 1 - (data.keywords[index].score / valmax);
               let i = 0;
               document.querySelector("#extract").innerHTML =
-                '<div class="container">' +
                 '<div class="section-title">' +
                 '<h2>Annotated text</h2>' +
                 '<p>The top ' + (index + 1) + ' keywords in terms of relevance are annotated in the text.</p>' +
-                '<br>' +
-                '<div>' +
+                '</div>' +
+                '<div" class="team section-bg">' +
                 '<p>' + data['highlighted_text'] + '</p>' +
                 '</div>' +
-                '</div>' +
-                '<br>' +
-                '<div class="section-title d-flex flex-column justify-content-center align-items-center">' +
+                '<div class="section-title">' +
                 '<h2>Word Cloud</h2>' +
                 '<p>Keywords size is related to its relevance.</p>' +
-                '<div id="body-cloud">' +
                 '</div>' +
+                '<div id="body-cloud">' +
                 '</div>' +
                 '<div class="section-title">' +
                 '<h2>Top ' + (index + 1) + ' keywords</h2>' +
@@ -336,35 +306,20 @@
                 '<p>Mouse-hover on the keywords to highlight similar answers.</p>' +
                 '</div>' +
                 '<div class="row" style="">' +
-                '<div class="col-lg-12 d-flex flex-column justify-content-center align-items-center pt-4 pt-lg-0 order-2 order-lg-1">' +
-                '<div class="panel panel-default" style="display:flex; flex-direction: column;align-items: stretch; width:700px;">' +
-                '<div style="display:flex;justify-content: flex-end;background-color: #37517e;color: white;width:667px;margin-left:33px; height:35px;">' +
-                '<div class="panel-heading" style="font-weight: bold; width:300px; color: white;text-align:left; margin-top:4px;">Keywords</div>' +
-                '<div class="panel-heading" style="font-weight: bold; width:135px; color: white; margin-top:4px; text-align:right;">Score</div>' +
-                '<div class="panel-heading" style="font-weight: bold; width:237px;text-align:right; margin-right:2px; margin-top:4px;">Normalized Score</div>' +
-                '</div>' +
-                '<ol id="tbl_keys" style="' +
+                '<div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1">' +
+                '<div class="panel panel-default">' +
+                '<div class="panel-heading" style="min-height: 65px;">Keywords by Yake</div>' +
+                '<ol id="tbl_keys" class="list-group" style="' +
                 'padding-bottom: 10px;' +
-                'padding-top: 0px;' +
+                'padding-top: 10px;' +
                 'margin-top: 10px;' +
                 'margin-bottom: 10px;' +
-                'width: 750px;' +
                 '">' +
                 '</ol>' +
                 '</div>' +
                 '</div>' +
-                '</div>' + '<div class="center">' +
-                //'<a type="button" class="btn btn-primary" download="Data.csv" id="" href="/assets/downloads/download.csv" style="margin-right: 17px;">Download (.csv)</a>' +
-                //'<a type="button" class="btn btn-primary" download="Data.txt" id="" href="/assets/downloads/download.txt" style="margin-right: 17px;">Download (.txt)</a>' +
-                //'<a type="button" class="btn btn-primary" download="Data.json" id="" href="/assets/downloads/download.json" >Download (.json)</a>' +
-                '<style>' +
-                '.center {' +
-                'text-align: center;' +
-                'margin-right: 4px;' +
-                '}'
-              '</style>' +
-                '</div>' +
                 '</div>'
+
             }
 
 
@@ -377,22 +332,28 @@
               let result = [];
               let valmax = getMaxFromCollection(data.keywords);
               normalized_score = 1 - (data.keywords[index].score / valmax);
-              let opac = (1 - (0.05 * index));
+
               document.querySelector("#tbl_keys").innerHTML +=
-                '<div style="display: flex;">' +
                 '<div class="classToken" style="opacity: 1">' +
                 '<div class="' + aplicaToken(data.keywords[index].ngram) + '">' +
-                '<ul style="display:flex;margin: 0;padding: 0;width: 700px;justify-content: flex-end;align-items: center;">' +
-                '<li class="" style="float:left; width:300px; text-align:left;"' +
+                '<li class="list-group-item" style="' +
+                'padding-bottom: 3px;' +
+                'padding-top: 3px;' +
+                'margin-top: 3px;' +
+                'margin-bottom: 3px;' +
+                'background-color: transparent;' +
                 '">' +
+
                 data.keywords[index].ngram +
+                '<span class="badge">' + normalized_score + '</span>' +
+                '<span class="badge">' + data.keywords[index].score + '</span>' +
+
                 '</li>' +
-                '<li class="badge" style="width:231px; color:black;text-align-last: center;">' + data.keywords[index].score.toFixed(4) + '</li>' +
-                '<li class="badge" style="width:144px; color:black; float:right; background-color:rgba(24, 210, 110, ' + opac + '); text-align:right;">' + normalized_score.toFixed(4) + '</li>' +
-                '<ul>' +
-                '</div>' +
                 '</div>' +
                 '</div>'
+
+
+
 
 
             }
@@ -408,102 +369,16 @@
               $(".classToken").stop().animate({ "opacity": "1" }, 300);
             });
 
-            let ngrams = [];
-            for (let index = 0; index < data.keywords.length; index++) {
-              ngrams.push({ "text": data.keywords[index].ngram, "size": data.keywords[index].score });
-            }
-            console.log(ngrams);
-
-
-            var len = ngrams.length;
-
-            console.log("len " + len);
-
-            var fill = d3.scale.category20();
-
-            function scale(value, min, max, term) {
-              var minFont = 40;
-              var maxFont = 70;
-
-              console.log("term: \"" + term + "\"");
-
-              // return d3.scale.log().domain([10, max]).range([minFont,  maxFont])(value);
-              return d3.scale.linear().domain([min, max]).range([minFont, maxFont])(value);
-            }
-
-            function getMaxFromKeywords(collection) {
-              var min = 0;
-              for (var i = 0; i < collection.length; i++) {
-                if (collection[i].size > min) min = collection[i].size;
-              }
-
-              return min;
-            }
-
-            function getMinFromKeywords(collection) {
-              var min = 9999999999999;
-              for (var i = 0; i < collection.length; i++) {
-                if (collection[i].size < min) min = collection[i].size;
-              }
-
-              return min;
-            }
-
-            var maiorValue = getMaxFromKeywords(ngrams);
-            var menorValue = getMinFromKeywords(ngrams);
-
-            d3.layout.cloud().size([1000, 500])
-              .words(ngrams)
-              .padding(1)
-              .rotate(function () { return ~~(Math.random() * 2) * 2; })
-              .font("Impact")
-              .fontSize(function (d) { return scale(d.size, maiorValue, maiorValue, d.text); })
-              .on("end", draw)
-              .start();
-
-            function color(i) {
-              var colors = ["#47b2e4", "#D6812F", "#7f9650", "#d9534f", "#a66c54"];
-              // var colors = ["#fff"];
-              return colors[i % colors.length];
-            }
-
-            function draw(words) {
-
-              d3.select("#body-cloud").append("svg")
-                .attr("width", 1000)
-                .attr("height", 500)
-                .append("g")
-                .attr("transform", "translate(500,250)")
-                .selectAll("text")
-                .data(words)
-                .enter().append("text")
-                .attr('opacity', 1)
-                .style("font-size", function (d) { return d.size + "px"; })
-                .style("font-family", "Impact")
-                .style("fill", function (d, i) { return color(i); })
-                .attr("text-anchor", "middle")
-                .attr("transform", function (d) {
-                  return "rotate(" + d.rotate + ")";
-                })
-                .attr("transform", function (d) {
-                  return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
-                })
-                .text(function (d) { return d.text; });
-            }
 
 
           })
       }
 
 
-
-
-
     </script>
 
 
     </div>
-
 
 
 

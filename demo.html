@@ -146,14 +146,13 @@
                 <a href="#"><button class="btn btn-danger" style="width:fit-content" type="reset"
                     onclick="document.getElementById('content').value = ''">Reset</button></a>
                 <span style="margin-right: 6px;"></span>
-                <a href="#moveDiv"><button class="btn btn-primary" style="width:fit-content; height:38px;" type="submit"
+                <a href="#extract"><button class="btn btn-primary" style="width:fit-content; height:38px;" type="submit"
                     onclick="criaDivs()">Extract
                     important
                     keywords</button></a>
         </fieldset>
       </div>
-      <div id="moveDiv"></div>
-<br><br><br><br><br>
+
       <!-- ======= Team Section =======    https://icons.getbootstrap.com/  -->
 
       <div id="extract" class="col-lg-12 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1"
@@ -206,7 +205,7 @@
         })
           .then((response) => response.json())
           .then(data => {
-            console.log(data.keywords.ngram)
+            console.log(data.keywords)
             console.log(data['highlighted_text']);
 
             function listaTokensIndex(words) {
@@ -372,6 +371,7 @@
 
 
             for (let index = 0; index < data.keywords.length; index++) {
+              //console.log(data.keywords[index].ngram);
               //console.log(listaTokens(data.keywords[index].ngram));
               let element = data.keywords[index];
               var normalized_score;

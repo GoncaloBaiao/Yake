@@ -154,8 +154,7 @@
       </div>
 
       <!-- ======= Team Section =======    https://icons.getbootstrap.com/  -->
-
-      <div id="extract" class="col-lg-12 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1"
+  <div id="extract" class="col-lg-12 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1"
         data-aos="fade-up">
       </div>
     </section>
@@ -338,15 +337,15 @@
                 '</div>' +
                 '<div class="row" style="">' +
                 '<div class="col-lg-12 d-flex flex-column justify-content-center align-items-center pt-4 pt-lg-0 order-2 order-lg-1">' +
-                '<div class="panel panel-default">' +
-                '<div style="display:flex;justify-content: flex-end;">' +
-                '<div class="panel-heading" style="font-weight: bold; width:40%;">Keywords</div>' +
-                '<div class="panel-heading" style="font-weight: bold; width:22%;">Score</div>' +
-                '<div class="panel-heading" style="font-weight: bold; width:33%;">Normalized Score</div>' +
+                '<div class="panel panel-default" style="display:flex; flex-direction: column;align-items: stretch; width:700px;">' +
+                '<div style="display:flex;justify-content: flex-end;background-color: #37517e;color: white;width:667px;margin-left:33px; height:35px;">' +
+                '<div class="panel-heading" style="font-weight: bold; width:300px; color: white;text-align:left; margin-top:4px;">Keywords</div>' +
+                '<div class="panel-heading" style="font-weight: bold; width:135px; color: white; margin-top:4px; text-align:right;">Score</div>' +
+                '<div class="panel-heading" style="font-weight: bold; width:237px;text-align:right; margin-right:2px; margin-top:4px;">Normalized Score</div>' +
                 '</div>' +
                 '<ol id="tbl_keys" style="' +
                 'padding-bottom: 10px;' +
-                'padding-top: 10px;' +
+                'padding-top: 0px;' +
                 'margin-top: 10px;' +
                 'margin-bottom: 10px;' +
                 'width: 750px;' +
@@ -355,10 +354,9 @@
                 '</div>' +
                 '</div>' +
                 '</div>' + '<div class="center">' +
-                '<a  type="button" class="btn btn-primary" download="Data.csv" id="" href="" style="margin-right: 17px;">Download (.csv)</a>' +
-                '<a type="button" class="btn btn-primary" download="Data.txt" id="" href="" style="margin-right: 17px;">Download (.txt)</a>' +
-                '<a type="button" class="btn btn-primary" download="Data.json" id="" href="" >Download (.json)</a>' +
-
+                //'<a type="button" class="btn btn-primary" download="Data.csv" id="" href="/assets/downloads/download.csv" style="margin-right: 17px;">Download (.csv)</a>' +
+                //'<a type="button" class="btn btn-primary" download="Data.txt" id="" href="/assets/downloads/download.txt" style="margin-right: 17px;">Download (.txt)</a>' +
+                //'<a type="button" class="btn btn-primary" download="Data.json" id="" href="/assets/downloads/download.json" >Download (.json)</a>' +
                 '<style>' +
                 '.center {' +
                 'text-align: center;' +
@@ -385,12 +383,12 @@
                 '<div class="classToken" style="opacity: 1">' +
                 '<div class="' + aplicaToken(data.keywords[index].ngram) + '">' +
                 '<ul style="display:flex;margin: 0;padding: 0;width: 700px;justify-content: flex-end;align-items: center;">' +
-                '<li class="" style="float:left; width:33%;"' +
+                '<li class="" style="float:left; width:300px; text-align:left;"' +
                 '">' +
                 data.keywords[index].ngram +
                 '</li>' +
-                '<li class="badge" style="width:33%; color:black;text-align-last: center;">' + data.keywords[index].score.toFixed(4) + '</li>' +
-                '<li class="badge" style="width:33%; color:black; float:right; background-color:rgba(24, 210, 110, ' + opac + ');">' + normalized_score.toFixed(4) + '</li>' +
+                '<li class="badge" style="width:231px; color:black;text-align-last: center;">' + data.keywords[index].score.toFixed(4) + '</li>' +
+                '<li class="badge" style="width:144px; color:black; float:right; background-color:rgba(24, 210, 110, ' + opac + '); text-align:right;">' + normalized_score.toFixed(4) + '</li>' +
                 '<ul>' +
                 '</div>' +
                 '</div>' +
@@ -410,59 +408,66 @@
               $(".classToken").stop().animate({ "opacity": "1" }, 300);
             });
 
-            var myWords = data.keywords;
+            let ngrams = [];
+            for (let index = 0; index < data.keywords.length; index++) {
+              ngrams.push({ "text": data.keywords[index].ngram, "size": data.keywords[index].score });
+            }
+            console.log(ngrams);
+
+
+            var len = ngrams.length;
+
+            console.log("len " + len);
+
             var fill = d3.scale.category20();
 
             function scale(value, min, max, term) {
-              var minFont = 20;
-              var maxFont = 50;
+              var minFont = 40;
+              var maxFont = 70;
 
               console.log("term: \"" + term + "\"");
 
+              // return d3.scale.log().domain([10, max]).range([minFont,  maxFont])(value);
               return d3.scale.linear().domain([min, max]).range([minFont, maxFont])(value);
             }
 
-            function getMaxFromCollection(collection) {
+            function getMaxFromKeywords(collection) {
               var min = 0;
               for (var i = 0; i < collection.length; i++) {
-                if (collection[i].score > min) min = collection[i].score;
+                if (collection[i].size > min) min = collection[i].size;
               }
 
               return min;
             }
-            function getMinFromCollection(collection) {
+
+            function getMinFromKeywords(collection) {
               var min = 9999999999999;
               for (var i = 0; i < collection.length; i++) {
-                if (collection[i].score < min) min = collection[i].score;
+                if (collection[i].size < min) min = collection[i].size;
               }
 
               return min;
             }
 
-            var maxValue = getMaxFromCollection(data.keywords);
-            var minValue = getMinFromCollection(data.keywords);
+            var maiorValue = getMaxFromKeywords(ngrams);
+            var menorValue = getMinFromKeywords(ngrams);
 
-            // Constructs a new cloud layout instance. It run an algorithm to find the position of words that suits your requirements
-            var layout = d3.layout.cloud()
-              .size([1000, 500])
-              .words(myWords)
+            d3.layout.cloud().size([1000, 500])
+              .words(ngrams)
               .padding(1)
               .rotate(function () { return ~~(Math.random() * 2) * 2; })
               .font("Impact")
-              .fontSize(function (d) { return scale(d.score, minValue, maxValue, d.ngram); })
-              .on("end", draw);
-            layout.start();
-
+              .fontSize(function (d) { return scale(d.size, maiorValue, maiorValue, d.text); })
+              .on("end", draw)
+              .start();
 
             function color(i) {
-              var colors = ["#000", "#D6812F", "#7f9650", "#d9534f", "#a66c54"];
+              var colors = ["#47b2e4", "#D6812F", "#7f9650", "#d9534f", "#a66c54"];
               // var colors = ["#fff"];
               return colors[i % colors.length];
             }
 
-            // This function takes the output of 'layout' above and draw the words
-            // Better not to touch it. To change parameters, play with the 'layout' variable above
-            function draw(myWords) {
+            function draw(words) {
 
               d3.select("#body-cloud").append("svg")
                 .attr("width", 1000)
@@ -470,7 +475,7 @@
                 .append("g")
                 .attr("transform", "translate(500,250)")
                 .selectAll("text")
-                .data(myWords)
+                .data(words)
                 .enter().append("text")
                 .attr('opacity', 1)
                 .style("font-size", function (d) { return d.size + "px"; })
@@ -483,7 +488,7 @@
                 .attr("transform", function (d) {
                   return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
                 })
-                .text(function (d) { return d.ngram; });
+                .text(function (d) { return d.text; });
             }
 
 
@@ -498,6 +503,7 @@
 
 
     </div>
+
 
 
 
